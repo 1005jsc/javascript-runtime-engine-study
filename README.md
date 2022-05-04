@@ -17,8 +17,42 @@
   2의 경우, Promise.then()에의한 recursion에서는 사이트가 먹통이 되는 차이를 설명할 수 있다.
 
 
+<div style="
+    display: flex; 
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    ">
+
+<div 
+    style="
+    width: 50px;
+    height: 100px;
+    background-color: aqua;
+    "
+
+></div>
+<div 
+
+style="
+width: 50px;
+height: 100px;
+background-color:beige;
+"
+></div>
+    </div>
+
+<div >
+
+
+
+<div >
+
+
 
 ```
+
+
 // 1
 function handleClick(){
   console.log('handleClick')
@@ -29,6 +63,9 @@ function handleClick(){
 }
 ```
 
+
+</div>
+<div>
 ```
 // 2
 function handleClick(){
@@ -41,6 +78,10 @@ function handleClick(){
 }
 ```
 
+</div>
+
+
+</div>
 
 
 
