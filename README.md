@@ -236,7 +236,7 @@ console.log("끝")
     <td><img src="/assets/11~20/12.svg" alt="그림 12"></td>
   </tr>
   <tr>
-    <td colspan="3" align="center">anonymous를 먼저 받고, 1줄의 console.log("시작")을 실행한다</td>
+    <td colspan="3" align="center">anonymous를 먼저 받고, 첫 줄의 console.log("시작")을 실행한다</td>
   </tr>
   
   <tr>
