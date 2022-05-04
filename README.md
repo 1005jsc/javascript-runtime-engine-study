@@ -74,7 +74,7 @@ function handleClick(){
     음악재생프로그램, 사진뷰어프로그램처럼 각각의 독립적인 일을 수행하는 주최를 'process(프로세스)' 라고 한다. 
 
 
-<img src="/assets/1.svg" alt="그림 1: 운영체제와 프로세스">
+<img src="/assets/1.svg" width="700px"  alt="그림 1: 운영체제와 프로세스">
 
 
     
