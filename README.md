@@ -231,7 +231,7 @@ console.log("끝")
 
 <table>
   <tr>
-    <td>1.</td>
+    <td align="center">1.</td>
     <td> <img src="/assets/11~20/11.svg" alt="그림 11"></td>
     <td><img src="/assets/11~20/12.svg" alt="그림 12"></td>
   </tr>
@@ -240,7 +240,7 @@ console.log("끝")
   </tr>
   
   <tr>
-    <td>2.</td>
+    <td align="center">2.</td>
     <td> <img src="/assets/11~20/13.svg" alt="그림 13"></td>
     <td><img src="/assets/11~20/14.svg" alt="그림 14"></td>
   </tr>
@@ -249,7 +249,7 @@ console.log("끝")
   </tr>
   
   <tr>
-    <td>3.</td>
+    <td align="center">3.</td>
     <td> <img src="/assets/11~20/15.svg" alt="그림 15"></td>
     <td><img src="/assets/11~20/16.svg" alt="그림 16"></td>
   </tr>
@@ -258,7 +258,7 @@ console.log("끝")
   </tr>
   
   <tr>
-    <td>4.</td>
+    <td align="center">4.</td>
     <td> <img src="/assets/11~20/17.svg" alt="그림 17"></td>
     <td><img src="/assets/11~20/18.svg" alt="그림 18"></td>
   </tr>
@@ -267,7 +267,7 @@ console.log("끝")
   </tr>
   
   <tr>
-    <td>5.</td>
+    <td align="center">5.</td>
     <td> <img src="/assets/11~20/19.svg" alt="그림 19"></td>
     <td><img src="/assets/11~20/20.svg" alt="그림 20"></td>
   </tr>
@@ -285,6 +285,7 @@ console.log("끝")
 </table>
 
 <br/>
+
 > 이번 예에서 setTimeout으로 예를 들었는데, setInterval, addClickEventListener도 똑같은 원리로 동작한다. 
 
 
