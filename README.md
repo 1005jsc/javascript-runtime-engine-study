@@ -245,7 +245,7 @@ console.log("끝")
     <td><img src="/assets/11~20/14.svg" alt="그림 14"></td>
   </tr>
   <tr>
-    <td colspan="3" align="center">setTimeout이 CallStack에 들어옴, setTImeout은 동기가 아닌 비동기이다. 비동기인 setTimeout은 webAPIs로 따로 빠지게 된다.</td>
+    <td colspan="3" align="center">setTimeout이 CallStack에 들어옴, setTImeout은 동기가 아닌 비동기이다.<br/> 비동기인 setTimeout은 webAPIs로 따로 빠지게 된다.</td>
   </tr>
   
   <tr>
@@ -272,7 +272,7 @@ console.log("끝")
     <td><img src="/assets/11~20/20.svg" alt="그림 20"></td>
   </tr>
   <tr>
-    <td colspan="3" align="center">EventLoop가 Callback Queue에 콜백이 들어와 있는 것을 확인한다. 그 다믕으로 CallStack의 상태가 비어있는지 확인한다. CallStack이 텅텅 비어있으니 Callback Queue에서 기다리고 있는 콜백을 CallStack에 집어 넣는다. <br/>
+    <td colspan="3" align="center">EventLoop가 Callback Queue에 콜백이 들어와 있는 것을 확인한다.<br/> 그 다음으로 CallStack의 상태가 비어있는지 확인한다. CallStack이 텅텅 비어있으니 Callback Queue에서 기다리고 있는 콜백을 CallStack에 집어 넣는다. <br/>
     EventLoop는 콜스텍이 텅텅 비어있는 경우에만 Callback Queue에서 대기중인 비동기의 콜백을 콜스텍으로 가져와 실행시킨다. 만약 콜스텍이 차있으면 가져오지 않는다.   
     그리고 또, 이벤트 루프는 한번에 하나만 가져온다. Callback Queue에 콜백이 두 개 이상 머물러 있다고 해도 두 개 이상을 한번에 가져오지는 않는다. <br/>
     이렇게 setTimeout Callback 을 실행시키고 "중간"을 콘솔에 출력시키며 프로그램을 마무리 한다.       
