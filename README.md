@@ -241,8 +241,8 @@ console.log("끝")
 <table>
   <tr>
     <td>1.</td>
-    <td> <img src="/assets/11.svg" alt="그림 11"></td>
-    <td><img src="/assets/12.svg" alt="그림 12"></td>
+    <td> <img src="/assets/11~20/11.svg" alt="그림 11"></td>
+    <td><img src="/assets/11~20/12.svg" alt="그림 12"></td>
   </tr>
   <tr>
     <td colspan="3">anonymous를 먼저 받고, 1줄의 console.log("시작")을 실행한다</td>
@@ -250,8 +250,8 @@ console.log("끝")
   
   <tr>
     <td>2.</td>
-    <td> <img src="/assets/13.svg" alt="그림 13"></td>
-    <td><img src="/assets/14.svg" alt="그림 14"></td>
+    <td> <img src="/assets/11~20/13.svg" alt="그림 13"></td>
+    <td><img src="/assets/11~20/14.svg" alt="그림 14"></td>
   </tr>
   <tr>
     <td colspan="3">setTimeout이 CallStack에 들어옴, setTImeout은 동기가 아닌 비동기이다. 비동기인 setTimeout은 webAPIs로 따로 빠지게 된다.</td>
@@ -259,8 +259,8 @@ console.log("끝")
   
   <tr>
     <td>3.</td>
-    <td> <img src="/assets/15.svg" alt="그림 15"></td>
-    <td><img src="/assets/16.svg" alt="그림 16"></td>
+    <td> <img src="/assets/11~20/15.svg" alt="그림 15"></td>
+    <td><img src="/assets/11~20/16.svg" alt="그림 16"></td>
   </tr>
   <tr>
     <td colspan="3">setTimeout()가 비동기로 빠지게 되고, 다음줄인 console.log("끝")이 실행 됨</td>
@@ -268,8 +268,8 @@ console.log("끝")
   
   <tr>
     <td>4.</td>
-    <td> <img src="/assets/17.svg" alt="그림 17"></td>
-    <td><img src="/assets/18.svg" alt="그림 18"></td>
+    <td> <img src="/assets/11~20/17.svg" alt="그림 17"></td>
+    <td><img src="/assets/11~20/18.svg" alt="그림 18"></td>
   </tr>
   <tr>
     <td colspan="3">console.log("끝")도 다 실행했고, anonymous도 실행이 끝남. <br/> 3초 후 setTimeout의 타임이 끝나게 되면, setTimeout의 콜백함수는 Callback Queue로 들어가게 된다. </td>
@@ -277,8 +277,8 @@ console.log("끝")
   
   <tr>
     <td>5.</td>
-    <td> <img src="/assets/19.svg" alt="그림 19"></td>
-    <td><img src="/assets/20.svg" alt="그림 20"></td>
+    <td> <img src="/assets/11~20/19.svg" alt="그림 19"></td>
+    <td><img src="/assets/11~20/20.svg" alt="그림 20"></td>
   </tr>
   <tr>
     <td colspan="3">EventLoop가 Callback Queue에 콜백이 들어와 있는 것을 확인한다. 그 다믕으로 CallStack의 상태가 비어있는지 확인한다. CallStack이 텅텅 비어있으니 Callback Queue에서 기다리고 있는 콜백을 CallStack에 집어 넣는다. <br/>
@@ -287,7 +287,7 @@ console.log("끝")
     이렇게 setTimeout Callback 을 실행시키고 "중간"을 콘솔에 출력시키며 프로그램을 마무리 한다.       
     </td>
 
-    
+
   </tr>
 
  
