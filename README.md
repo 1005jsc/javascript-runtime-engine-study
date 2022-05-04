@@ -259,7 +259,7 @@ console.log("끝")
   
   <tr>
     <td align="center">4.</td>
-    <td> <img src="/assets/11~20/17(2).svg" alt="그림 17"></td>
+    <td> <img src="/assets/11~20/17.svg" alt="그림 17"></td>
     <td><img src="/assets/11~20/18.svg" alt="그림 18"></td>
   </tr>
   <tr>
@@ -288,11 +288,79 @@ console.log("끝")
 
 > 이번 예에서 setTimeout으로 예를 들었는데, setInterval, addClickEventListener도 똑같은 원리로 동작한다. 
 
+<br/>
+<br/>
+
+<div id="4"></div>
+
+## 5. Callback Queue 내부를 까서 여러종류의 비동기들을 어떻게 처리하는지 보기 1탄
+<br/>
+<br/>
+
+전 장에서 비동기 콜백을 담는 그릇으로 Callback Queue라고 설명했었는데, 사실 이 Callback Queue는 세가지로 이루어져 있다. 
+<br/>
+<br/>
+- 테스크 큐(setTimeout, setInterval, addClickEventListener)
+-  마이크로테스크 큐(Promise.then(), mutation observer(이건 지금은 잘 모름))
+- 렌더 시퀀스(줄여서 렌더)(Request Animation Frame, Render Tree, Layout, Paint)
+
+<br/>
+<br/>
+
+<div align="center"> <img src="/assets/21~22/21.svg" width="700px"  alt="그림 21: Callback Queue 내부를 깐 모습"></div>
+
+<br/>
+<br/>
+    <div align="center"> <span>그림 21: Callback Queue 내부를 깐 모습</span></div>
+
+<br/>
+<br/>
+
+
+setTimeout이나 clickEventListener의 콜백은 Task Queue 로 들어가고 fetch의 promise.then(), mutation observer는 MicroTask Queue로 간다. Render 는 주기적으로 browser 요소들에 변경이 일어날때 업데이트를 해주는 역할을 하는데, RequestedAnimationFrame의 콜백은 Render로 들어가게 된다.   
+
+
+<br/>
+<br/>
+
+<div id="5"></div>
+
+## 6. Callback Queue 내부를 까서 여러종류의 비동기들을 어떻게 처리하는지 보기 2탄
+<br/>
+<br/>
+
+<br/>
+<br/>
+
+<div align="center"> <img src="/assets/21~22/22.svg" width="700px"  alt="그림 22: Callback Queue 내부를 깐 모습 2"></div>
+
+<br/>
+<br/>
+    <div align="center"> <span>그림 22: Callback Queue 내부를 깐 모습 2</span></div>
+
+<br/>
+<br/>
+
+|1.|EventLoop는 빠르게 돌면서 비동기들을 콜스텍에 전달해 줄 타이밍을 재고있다. "콜스텍이 텅텅 비어야만 이벤트루프는 비동기 콜백들을 콜스텍에 넣어 줄 수 있다."라고 전 장에서 설명했는데  만약 무언가의 이유로 CallStack이 꽉 차버리게 되면 (주로 처리하기 시간이 아주 많이 걸리는 일이 Callstack에 들어오거나, 무수히 많은 일들이 들어오는 경우), 이로인해 EventLoop는 더이상 돌지 않고 콜스텍에 머물러 있게 된다. 이렇게 되면 EventLoop는 콜백큐에 닿지 않게 되기 때문에, 콜백큐에 대기중이던 콜백들을 더이상 전달해 줄 수 없게 되는 것이다(순환버스가 한 정거장에 머물러 있기때문에 다른 정거장에 있는 승객들이 버스가 오기까지 기다려야 되는 상황과 비슷하다). Render도 실행이 안되게 되니 화면이 멈춰버리게 되고, 클릭리스너에 등록된 콜백이 콜스텍으로 갈수 없게되어 클릭을 해도 말을 안듣게 되는 것이다.   
+|:--:|:--:|
+|2. | 콜스텍이 드디어 비워졌다. EventLoop는 다시 빙글빙글 돌기 시작한다. EventLoop가 Callback Queue에서 콜백을 발견하면 CallStack에 배달해준다까지는 이해가 가지만, 이중 세곳 모두 콜백들이 쌓여 있는 경우라면 과연 EventLoop는 어느것부터 CallStack에 가져다 줄까? 아마 FIFO(First In First Out)이니까 먼저 실행된 비동기의 콜백을 전달해주지 않을 까라는 생각을 보통 하게되는데 실제로는 FIFO보다 우선시 되는 기준이 아래와 같이 있다. <br/>가장 우선적으로 선택 > Microtask Queue > Animation Frames > TaskQueue > 가장 후순위로 선택 <br/> 예를 들어 setTimeout함수실행문이 promise.then실행문보다 앞에서 적혀있더라도, Promise.then의 콜백을, setTimeout의 콜백보다 더 우선적으로 실행시키기 때문에 Callback Queue는 FIFO임에도 불구하고 Promise.then 을 먼저 실행하게 된다. (실제로 해보면 감이 빡 들어올 것임)  |
+|3. | Render는 이벤트루프가 보통 60초에 한번씩 들린다. 그래야 사람눈은 브라우저가 가장 자연스럽게 작동하고 있는 것처럼 보인다. (반드시 60초에 한번씩 들린것은 아님, 더 자주 들릴 수도 있고 더 덜 들릴 수도 있다고 함)|
+|4. |Microtask Queue인 경우는 살짝 특별한데, EventLoop가 Microtask Queue 에 머물러 있는 동안 마이크로테스크에 또다른 콜백이 들어 온다면, 마이크로테스크큐가 텅텅 빌때까지 콜스텍으로 다 가져옴. 다 가져올떄까지 이벤트루프는 Microtask Queue에 계속 머물러 있음 |
+|5. |Task Queue에서는 콜백을 하나씩만 콜스텍에 넣는다. 그 하나가 실행이 끝나면 Task Queue에 콜백이 남아있을지라도 내버려두고 eventLoop는 돌아버린다 새로 한바퀴 돌아서 Render랑 Microtask Queue 확인 해주고난 다음에서야 TaskQueue로 돌아오고, 그 다음 콜백을 또 하나 가져다 실행하게 된다. |
+
+
+추후에 더 공부하면 디테일한 부분을 더 넣어 보겠음
+
+일단 끝
+
+쓰는데 도움된 곳: [우리밋유투브](https://www.youtube.com/watch?v=S1bVARd2OSE)
 
 
 
 
-   
+
+
+
 
 
 
