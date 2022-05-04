@@ -154,7 +154,8 @@ function handleClick(){
 
   - Web APIs(노드에선 백그라운드라고 부름): DOM, AJAX, setTimeout, promise, requested Animation Frame과 같은 주로 비동기처리를 담당한다. 콜스텍 안에 동기가 아닌 비동기 코드가 들어올 때, 이벤트루프는 그 코드를 꺼내 Web APIs로 보내주게 된다.   
 
-  - Callback Queue: 비동기처리가 끝난 후에 실행되어야 할 콜백함수가 차례로 할당 됨
+  - Callback Queue: 비동기처리가 끝난 후에 실행되어야 할 콜백함수가 차례로 들어옴   
+    그리고 먼저 들어온 콜백은 먼저 빠져나가게 됨 (FIFO: First In First Out)
 
 <br/>
 <br/>
@@ -192,9 +193,9 @@ third();
 <br/>
 <br/>
 
-|||||
-|:---:|---|:---|---|
+
 |1.     | <img src="/assets/4.svg" alt="4" width="200px" height="200px" />    | 가장 먼저 가장 기본이 되는 anonymous가 콜스텍에 먼저 들어감     |    <img src="/assets/10.svg" alt="10" width="200px" height="200px" /> |
+|:---:|---|:---|---|
 |2.     | <img src="/assets/5.svg" alt="5" width="200px" height="200px" />      |  **함수가 호출되면'()' 콜스텍에 담겨진다** 라고 생각하면 됨 <br />자바스크립트가 함수 호출문 `first()`;를 읽고,  first가 CallStack에 담김  <br /> *`console.log("첫번째")`는 `second()`가 아직 안 끝났기 때문에 안 읽히고 있는 것임*    |<img src="/assets/10.svg" alt="10" width="200px" height="200px" />|
 |3.     | <img src="/assets/6.svg" alt="6" width="200px" height="200px" />      |  "세번째"라는 콘솔로그가 실행이 됨 실행이 끝나면 CallStack에서 지워짐<br /> 함수의 제일 끝 중괄호에 닫게 되면 그 함수는 다 읽힌 것이라고 보면 됨<br /> 이리하여 `third()`도 CallStack을 빠져나감<br /> '두번째', '첫번째'를 모두 출력하고 함수호출문 `first()`의 모든 실행이 끝남     |<img src="/assets/7.svg" alt="7" width="200px" height="200px" /> |
 |4.     | <img src="/assets/8.svg" alt="8" width="200px" height="200px" />      | third()가 한번 더 호출되고 anonymous가 콜스텍을 빠져나감으로써 콜스텍은 텅텅 비게 됨<br /> 콜스텍이 전부 비었다는 뜻은 자바스크립트 프로그램이 전부 종료되었다는 것과 같음 |<img src="/assets/9.svg" alt="9" width="200px" height="200px" /> |
@@ -227,19 +228,31 @@ console.log("끝")
 
 > 이번 예에서 setTimeout으로 예를 들었는데, setInterval, addClickEventListener도 똑같은 원리로 동작한다. 
 
-|||||
-|:---:|---|:---|---|
 |1.     | <img src="/assets/4.svg" alt="4" width="200px" height="200px" />    | 가장 먼저 가장 기본이 되는 anonymous가 콜스텍에 먼저 들어감     |    <img src="/assets/10.svg" alt="10" width="200px" height="200px" /> |
+|:---:|---|:---|---|
 |2.     | <img src="/assets/5.svg" alt="5" width="200px" height="200px" />      |  **함수가 호출되면'()' 콜스텍에 담겨진다** 라고 생각하면 됨 <br />자바스크립트가 함수 호출문 `first()`;를 읽고,  first가 CallStack에 담김  <br /> *`console.log("첫번째")`는 `second()`가 아직 안 끝났기 때문에 안 읽히고 있는 것임*    |<img src="/assets/10.svg" alt="10" width="200px" height="200px" />|
 |3.     | <img src="/assets/6.svg" alt="6" width="200px" height="200px" />      |  "세번째"라는 콘솔로그가 실행이 됨 실행이 끝나면 CallStack에서 지워짐<br /> 함수의 제일 끝 중괄호에 닫게 되면 그 함수는 다 읽힌 것이라고 보면 됨<br /> 이리하여 `third()`도 CallStack을 빠져나감<br /> '두번째', '첫번째'를 모두 출력하고 함수호출문 `first()`의 모든 실행이 끝남     |<img src="/assets/7.svg" alt="7" width="200px" height="200px" /> |
 |4.     | <img src="/assets/8.svg" alt="8" width="200px" height="200px" />      | third()가 한번 더 호출되고 anonymous가 콜스텍을 빠져나감으로써 콜스텍은 텅텅 비게 됨<br /> 콜스텍이 전부 비었다는 뜻은 자바스크립트 프로그램이 전부 종료되었다는 것과 같음 |<img src="/assets/9.svg" alt="9" width="200px" height="200px" /> |
 
 
 
+|1.|헬로|안녕|
+|--|---|--|
+|anonymous를 먼저 받고, 1줄의 console.log("시작")을 실행한다|
 
 
+<table>
+  <tr>
+    <td>내용</td>
+    <td> <img src="/assets/1.svg" alt="그림 1: 운영체제와 프로세스"></td>
+    <td><img src="/assets/2.svg" alt="그림 1: 운영체제와 프로세스"></td>
+  </tr>
+  <tr>
+    <td colspan="3">내용</td>
+  </tr>
+</table>
 
-
+   
 
 
 
