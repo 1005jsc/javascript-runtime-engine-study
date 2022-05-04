@@ -245,7 +245,7 @@ console.log("끝")
     <td><img src="/assets/11~20/14.svg" alt="그림 14"></td>
   </tr>
   <tr>
-    <td colspan="3">setTimeout이 CallStack에 들어옴, setTImeout은 동기가 아닌 비동기이다. 비동기인 setTimeout은 webAPIs로 따로 빠지게 된다.</td>
+    <td colspan="3" align="center">setTimeout이 CallStack에 들어옴, setTImeout은 동기가 아닌 비동기이다. 비동기인 setTimeout은 webAPIs로 따로 빠지게 된다.</td>
   </tr>
   
   <tr>
@@ -254,7 +254,7 @@ console.log("끝")
     <td><img src="/assets/11~20/16.svg" alt="그림 16"></td>
   </tr>
   <tr>
-    <td colspan="3">setTimeout()가 비동기로 빠지게 되고, 다음줄인 console.log("끝")이 실행 됨</td>
+    <td colspan="3" align="center">setTimeout()가 비동기로 빠지게 되고, 다음줄인 console.log("끝")이 실행 됨</td>
   </tr>
   
   <tr>
@@ -263,7 +263,7 @@ console.log("끝")
     <td><img src="/assets/11~20/18.svg" alt="그림 18"></td>
   </tr>
   <tr>
-    <td colspan="3">console.log("끝")도 다 실행했고, anonymous도 실행이 끝남. <br/> 3초 후 setTimeout의 타임이 끝나게 되면, setTimeout의 콜백함수는 Callback Queue로 들어가게 된다. </td>
+    <td colspan="3" align="center">console.log("끝")도 다 실행했고, anonymous도 실행이 끝남. <br/> 3초 후 setTimeout의 타임이 끝나게 되면, setTimeout의 콜백함수는 Callback Queue로 들어가게 된다. </td>
   </tr>
   
   <tr>
@@ -272,7 +272,7 @@ console.log("끝")
     <td><img src="/assets/11~20/20.svg" alt="그림 20"></td>
   </tr>
   <tr>
-    <td colspan="3">EventLoop가 Callback Queue에 콜백이 들어와 있는 것을 확인한다. 그 다믕으로 CallStack의 상태가 비어있는지 확인한다. CallStack이 텅텅 비어있으니 Callback Queue에서 기다리고 있는 콜백을 CallStack에 집어 넣는다. <br/>
+    <td colspan="3" align="center">EventLoop가 Callback Queue에 콜백이 들어와 있는 것을 확인한다. 그 다믕으로 CallStack의 상태가 비어있는지 확인한다. CallStack이 텅텅 비어있으니 Callback Queue에서 기다리고 있는 콜백을 CallStack에 집어 넣는다. <br/>
     EventLoop는 콜스텍이 텅텅 비어있는 경우에만 Callback Queue에서 대기중인 비동기의 콜백을 콜스텍으로 가져와 실행시킨다. 만약 콜스텍이 차있으면 가져오지 않는다.   
     그리고 또, 이벤트 루프는 한번에 하나만 가져온다. Callback Queue에 콜백이 두 개 이상 머물러 있다고 해도 두 개 이상을 한번에 가져오지는 않는다. <br/>
     이렇게 setTimeout Callback 을 실행시키고 "중간"을 콘솔에 출력시키며 프로그램을 마무리 한다.       
@@ -283,6 +283,8 @@ console.log("끝")
 
  
 </table>
+
+<br/>
 > 이번 예에서 setTimeout으로 예를 들었는데, setInterval, addClickEventListener도 똑같은 원리로 동작한다. 
 
 
