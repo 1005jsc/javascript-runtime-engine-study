@@ -127,8 +127,8 @@ function handleClick(){
 <br/>
 <br/>
 
-  답: 자바스크립트에는 '이벤트루프(event-loop)'가 있어, 싱글쓰레드임에도 불구하고 비동기적인 일을 수행할 수 있게 된다.  
-  이에 대해서는 자바스크립트 엔진 구조를 보면서 설명하겠음
+답: 자바스크립트에는 '이벤트루프(event-loop)'가 있어, 싱글쓰레드임에도 불구하고 비동기적인 일을 수행할 수 있게 된다.  
+이에 대해서는 자바스크립트 엔진 구조를 보면서 설명하겠음
 
 <br/>
 <br/>
@@ -146,7 +146,6 @@ function handleClick(){
     <div align="center"> <span>그림3: 자바스크립트 엔진의 모습</span></div>
 
 <br/>
-<br/>
 
   - Memory Heap: 동적 메모리(Heap)을 저장하는 곳
   - Call Stack: 실행할 코드를 쌓아 두는 곳, 자바스크립트가 돌면 코드 한줄 단위로 실행하게 되는데(자바스크립트는 interpreter언어라서 한줄한줄 해석해서 코드를 읽어 감), 그 한줄 한줄이 Call Stack에 담기게 됨, LIFO(Last In First Out)이라고 가장 나중에 들어온 코드는 가장 빨리 나가게 된다 
@@ -157,6 +156,45 @@ function handleClick(){
 
   - Callback Queue: 비동기처리가 끝난 후에 실행되어야 할 콜백함수가 차례로 할당 됨
 
+<br/>
+<br/>
+
+<div id="2"></div>
+
+## 동기적 코드 실행시 자바스크립트 엔진 동작과정 살펴보기
 
 
+<br/>
 
+예) 
+
+```
+function first() {
+    second();
+    console.log('첫번쨰!')
+}
+function second(){
+    third();
+    console.log('두번째')
+}
+function second(){
+    console.log('세번쨰')
+}
+first();
+third();
+
+```
+
+<br/>
+
+위의 코드를 동작시키면 자바스크립트 내부에서는 어떤 일들이 일어 날 것인가?
+
+<br/>
+<br/>
+
+|||||
+|:---:|---|:---|---|
+|1.     | <img src="/assets/4.svg" alt="4" width="50px" height="50px" />    | 가장 먼저 가장 기본이 되는 anonymous가 콜스텍에 먼저 들어감     |     |
+|2.     | 그림     |  **함수가 호출되면'()' 콜스텍에 담겨진다** 라고 생각하면 됨 <br />자바스크립트가 함수 호출문 `first()`;를 읽고,  first가 CallStack에 담김  <br /> *`console.log("첫번째")`는 `second()`가 아직 안 끝났기 때문에 안 읽히고 있는 것임*    ||
+|3.     | 그림     |  "세번째"라는 콘솔로그가 실행이 됨 실행이 끝나면 CallStack에서 지워짐<br /> 함수의 제일 끝 중괄호에 닫게 되면 그 함수는 다 읽힌 것이라고 보면 됨<br /> 이리하여 `third()`도 CallStack을 빠져나감<br /> '두번째', '첫번째'를 모두 출력하고 함수호출문 `first()`의 모든 실행이 끝남     ||
+|4.     | 그림     | third()가 한번 더 호출되고 anonymous가 콜스텍을 빠져나감으로써 콜스텍은 텅텅 비게 됨<br /> 콜스텍이 전부 비었다는 뜻은 자바스크립트 프로그램이 전부 종료되었다는 것과 같음 ||
