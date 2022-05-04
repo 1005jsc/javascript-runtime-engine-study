@@ -73,8 +73,8 @@ function handleClick(){
       여기서 컴퓨터의 프로그램들을 실행될수 있도록 관리하는 것을 '운영체제(operation system)' 이라고 하고,   
     음악재생프로그램, 사진뷰어프로그램처럼 각각의 독립적인 일을 수행하는 주최를 'process(프로세스)' 라고 한다. 
 
+<div align="center"> <img src="/assets/1.svg" width="700px"  alt="그림 1: 운영체제와 프로세스"></div>
 
-<img src="/assets/1.svg" width="700px"  alt="그림 1: 운영체제와 프로세스">
 
 
     
