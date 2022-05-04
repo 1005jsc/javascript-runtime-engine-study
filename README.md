@@ -259,7 +259,7 @@ console.log("끝")
   
   <tr>
     <td align="center">4.</td>
-    <td> <img src="/assets/11~20/17.svg" alt="그림 17"></td>
+    <td> <img src="/assets/11~20/17(2).svg" alt="그림 17"></td>
     <td><img src="/assets/11~20/18.svg" alt="그림 18"></td>
   </tr>
   <tr>
