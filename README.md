@@ -36,8 +36,7 @@ function handleClick(){
 ```
 
 
-</div>
-<div>
+
 ```
 // 2
 function handleClick(){
@@ -50,10 +49,6 @@ function handleClick(){
 }
 ```
 
-</div>
-
-
-</div>
 
 
 
