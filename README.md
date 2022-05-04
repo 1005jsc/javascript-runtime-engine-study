@@ -228,29 +228,72 @@ console.log("끝")
 
 > 이번 예에서 setTimeout으로 예를 들었는데, setInterval, addClickEventListener도 똑같은 원리로 동작한다. 
 
-|1.     | <img src="/assets/4.svg" alt="4" width="200px" height="200px" />    | 가장 먼저 가장 기본이 되는 anonymous가 콜스텍에 먼저 들어감     |    <img src="/assets/10.svg" alt="10" width="200px" height="200px" /> |
+<!-- |1.     | <img src="/assets/4.svg" alt="4" width="200px" height="200px" />    | 가장 먼저 가장 기본이 되는 anonymous가 콜스텍에 먼저 들어감     |    <img src="/assets/10.svg" alt="10" width="200px" height="200px" /> |
 |:---:|---|:---|---|
 |2.     | <img src="/assets/5.svg" alt="5" width="200px" height="200px" />      |  **함수가 호출되면'()' 콜스텍에 담겨진다** 라고 생각하면 됨 <br />자바스크립트가 함수 호출문 `first()`;를 읽고,  first가 CallStack에 담김  <br /> *`console.log("첫번째")`는 `second()`가 아직 안 끝났기 때문에 안 읽히고 있는 것임*    |<img src="/assets/10.svg" alt="10" width="200px" height="200px" />|
 |3.     | <img src="/assets/6.svg" alt="6" width="200px" height="200px" />      |  "세번째"라는 콘솔로그가 실행이 됨 실행이 끝나면 CallStack에서 지워짐<br /> 함수의 제일 끝 중괄호에 닫게 되면 그 함수는 다 읽힌 것이라고 보면 됨<br /> 이리하여 `third()`도 CallStack을 빠져나감<br /> '두번째', '첫번째'를 모두 출력하고 함수호출문 `first()`의 모든 실행이 끝남     |<img src="/assets/7.svg" alt="7" width="200px" height="200px" /> |
 |4.     | <img src="/assets/8.svg" alt="8" width="200px" height="200px" />      | third()가 한번 더 호출되고 anonymous가 콜스텍을 빠져나감으로써 콜스텍은 텅텅 비게 됨<br /> 콜스텍이 전부 비었다는 뜻은 자바스크립트 프로그램이 전부 종료되었다는 것과 같음 |<img src="/assets/9.svg" alt="9" width="200px" height="200px" /> |
 
+ -->
 
-
-|1.|헬로|안녕|
-|--|---|--|
-|anonymous를 먼저 받고, 1줄의 console.log("시작")을 실행한다|
 
 
 <table>
   <tr>
-    <td>내용</td>
-    <td> <img src="/assets/1.svg" alt="그림 1: 운영체제와 프로세스"></td>
-    <td><img src="/assets/2.svg" alt="그림 1: 운영체제와 프로세스"></td>
+    <td>1.</td>
+    <td> <img src="/assets/11.svg" alt="그림 11"></td>
+    <td><img src="/assets/12.svg" alt="그림 12"></td>
   </tr>
   <tr>
-    <td colspan="3">내용</td>
+    <td colspan="3">anonymous를 먼저 받고, 1줄의 console.log("시작")을 실행한다</td>
   </tr>
+  
+  <tr>
+    <td>2.</td>
+    <td> <img src="/assets/13.svg" alt="그림 13"></td>
+    <td><img src="/assets/14.svg" alt="그림 14"></td>
+  </tr>
+  <tr>
+    <td colspan="3">setTimeout이 CallStack에 들어옴, setTImeout은 동기가 아닌 비동기이다. 비동기인 setTimeout은 webAPIs로 따로 빠지게 된다.</td>
+  </tr>
+  
+  <tr>
+    <td>3.</td>
+    <td> <img src="/assets/15.svg" alt="그림 15"></td>
+    <td><img src="/assets/16.svg" alt="그림 16"></td>
+  </tr>
+  <tr>
+    <td colspan="3">setTimeout()가 비동기로 빠지게 되고, 다음줄인 console.log("끝")이 실행 됨</td>
+  </tr>
+  
+  <tr>
+    <td>4.</td>
+    <td> <img src="/assets/17.svg" alt="그림 17"></td>
+    <td><img src="/assets/18.svg" alt="그림 18"></td>
+  </tr>
+  <tr>
+    <td colspan="3">console.log("끝")도 다 실행했고, anonymous도 실행이 끝남. <br/> 3초 후 setTimeout의 타임이 끝나게 되면, setTimeout의 콜백함수는 Callback Queue로 들어가게 된다. </td>
+  </tr>
+  
+  <tr>
+    <td>5.</td>
+    <td> <img src="/assets/19.svg" alt="그림 19"></td>
+    <td><img src="/assets/20.svg" alt="그림 20"></td>
+  </tr>
+  <tr>
+    <td colspan="3">EventLoop가 Callback Queue에 콜백이 들어와 있는 것을 확인한다. 그 다믕으로 CallStack의 상태가 비어있는지 확인한다. CallStack이 텅텅 비어있으니 Callback Queue에서 기다리고 있는 콜백을 CallStack에 집어 넣는다. <br/>
+    EventLoop는 콜스텍이 텅텅 비어있는 경우에만 Callback Queue에서 대기중인 비동기의 콜백을 콜스텍으로 가져와 실행시킨다. 만약 콜스텍이 차있으면 가져오지 않는다.   
+    그리고 또, 이벤트 루프는 한번에 하나만 가져온다. Callback Queue에 콜백이 두 개 이상 머물러 있다고 해도 두 개 이상을 한번에 가져오지는 않는다. <br/>
+    이렇게 setTimeout Callback 을 실행시키고 "중간"을 콘솔에 출력시키며 프로그램을 마무리 한다.       
+    </td>
+
+    
+  </tr>
+
+ 
 </table>
+
+
 
    
 
